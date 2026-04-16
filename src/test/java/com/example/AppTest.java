@@ -1,22 +1,26 @@
 package com.example;
+
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 public class AppTest {
-    App calc = new App();
+
     @Test
-    public void testAdd() {
-        assertEquals(15, calc.add(10, 5));
+    public void testNoFine() {
+        int result = App.calculateFine(5);
+        assertEquals(0, result);
     }
+
     @Test
-    public void testSubtract() {
-        assertEquals(5, calc.subtract(10, 5));
+    public void testWithFine() {
+        int result = App.calculateFine(10);
+        assertEquals(15, result); // (10-7)*5 = 15
     }
+
     @Test
-    public void testMultiply() {
-        assertEquals(50, calc.multiply(10, 5));
-    }
-    @Test
-    public void testDivide() {
-        assertEquals(2, calc.divide(10, 5));
+    public void testExactLimit() {
+        int result = App.calculateFine(7);
+        assertEquals(0, result);
     }
 }
+
